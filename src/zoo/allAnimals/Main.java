@@ -1,3 +1,7 @@
+package zoo.allAnimals;
+
+import zoo.controller.Zoo;
+
 import java.time.LocalDate;
 
 public class Main {
@@ -27,16 +31,16 @@ public class Main {
             zoo.addEagle(eagle1);
             zoo.addEagle(eagle2);
 
-            System.out.println("L'animale con la coda più lunga è..." + zoo.getlongerTail().getName());
+            System.out.println("L'animale con la coda più lunga è..." + zoo.getLongestTail().getName());
             System.out.println("l'animale con la maggiore apertura alare è..."+ zoo.getGreatestWing().getName());
 
 
 
-           System.out.println("il leone più grande è.." + zoo.getHeavyLion().getName());
+           System.out.println("il leone più grande è.." + zoo.getHeaviestLion().getName());
 
-            System.out.println("... ed il più piccolo è ..." + zoo.getLightLion().getName());
+            System.out.println("... ed il più piccolo è ..." + zoo.getLightestLion().getName());
 
-            System.out.println("la tigre più grande è..."+ zoo.getHeavyTiger().getName());
+            System.out.println("la tigre più grande è..."+ zoo.getHeaviestTiger().getName());
 
             System.out.println("il leone più alto è.."+ zoo.getHighestLion().getName());
         }

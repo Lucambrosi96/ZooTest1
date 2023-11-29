@@ -5,177 +5,102 @@ import zoo.allAnimals.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Zoo {
-    List<Lion> lionList;
-    List<Tiger> tigerList;
-    List<Eagle> eagleList;
+    List<Animal> animalList;
 
     public Zoo() {
-        lionList = new ArrayList<>();
-        tigerList = new ArrayList<>();
-        eagleList = new ArrayList<>();
+        animalList = new ArrayList<>();
     }
 
-    public void addLion(Lion lion) {
-        lionList.add(lion);
+    public void addAnimal(Animal animal) {
+        animalList.add(animal);
     }
 
-    public void  addTiger(Tiger tiger){
-        tigerList.add(tiger);
-    }
-    public  void addEagle(Eagle eagle){
-        eagleList.add(eagle);
-    }
-    //LEONI//
-    public Lion getHighestLion(){
-        Lion currentHighest = lionList.get(0);
-        for (int i=1; i<lionList.size();i++)
-        {
-            if(lionList.get(i).getEight() > currentHighest.getEight())
-            {
-                currentHighest= lionList.get(i);
+    public <T extends Animal> Animal getTallestAnimal(Class<T> classe) {
+        Animal currentTallest = null;
+        for (Animal animal : animalList) {
+            if (classe.isInstance(animal)) {
+                if (currentTallest == null) {
+                    currentTallest = animal;
+                } else if (animal.getHeight() > currentTallest.getHeight()) {
+                    currentTallest = animal;
+                }
             }
         }
-        return currentHighest;
-    }
-    public Lion  getSmallestLion(){
-
-        Lion currentSmallest = lionList.get(0);
-
-        for(int i=1; i<lionList.size();i++){
-            if(lionList.get(i).getEight() < currentSmallest.getEight()){
-                currentSmallest= lionList.get(i);
-            }
-        }
-
-        return currentSmallest;
+        return currentTallest;
     }
 
-    public Lion getHeaviestLion(){
-        Lion currentHeaviest = lionList.get(0);
-        for(int i=1;i<lionList.size();i++){
-            if(lionList.get(1).getWeight()> currentHeaviest.getWeight()){
-                currentHeaviest= lionList.get(i);
-            }
-        }
-        return currentHeaviest;
-    }
-    public  Lion getLightestLion(){
-        Lion  currentLightest =  lionList.get(0);
-        for(int i=1;i<lionList.size();i++){
-            if(lionList.get(1).getWeight()< currentLightest.getWeight()){
-                currentLightest= lionList.get(i);
-            }
-        }
-        return  currentLightest;
-    }
-    //TIGRE//
-    public  Tiger getHighestTiger(){
-
-        Tiger currentHighest = tigerList.get(0);
-        for(int i=1; i<tigerList.size(); i++){
-            if (tigerList.get(i).getEight() > currentHighest.getEight()){
-                currentHighest = tigerList.get(i);
-            }
-        }
-        return currentHighest;
-    }
-    public  Tiger getSmallestTiger(){
-        Tiger currentSmallest = tigerList.get(0);
-        for(int i=1; i<tigerList.size(); i++){
-            if (tigerList.get(i).getEight() < currentSmallest.getEight()){
-                currentSmallest= tigerList.get(i);
+    public <T extends Animal> Animal getSmallestAnimal(Class<T> classe) {
+        Animal currentSmallest = null;
+        for (Animal animal : animalList) {
+            if (classe.isInstance(animal)) {
+                if (currentSmallest == null) {
+                    currentSmallest = animal;
+                } else if (animal.getHeight() < currentSmallest.getHeight()) {
+                    currentSmallest = animal;
+                }
             }
         }
         return currentSmallest;
     }
 
-    public Tiger getHeaviestTiger(){
-        Tiger currentHeaviest=tigerList.get(0);
-        for(int i=1; i<tigerList.size();i++){
-            if (tigerList.get(i).getWeight()> currentHeaviest.getWeight()){
-                currentHeaviest=tigerList.get(i);
+    public <T extends Animal> Animal getHeaviestAnimal(Class<T> classe) {
+        Animal currentHeaviest = null;
+        for (Animal animal : animalList) {
+            if (classe.isInstance(animal)) {
+                if (currentHeaviest == null) {
+                    currentHeaviest = animal;
+                } else if (animal.getHeight() > currentHeaviest.getWeight()) {
+                    currentHeaviest = animal;
+                }
             }
         }
         return currentHeaviest;
     }
 
-    public Tiger getLightTiger(){
-        Tiger currentLightest=tigerList.get(0);
-        for(int i=1; i<tigerList.size();i++){
-            if(tigerList.get(i).getWeight()< currentLightest.getWeight()){
-                currentLightest=tigerList.get(i);
+    public <T extends Animal> Animal getLightestAnimal(Class<T> classe) {
+        Animal currentLightest = null;
+        for (Animal animal : animalList) {
+            if (classe.isInstance(animal)) {
+                if (currentLightest == null) {
+                    currentLightest = animal;
+                } else if (animal.getHeight() < currentLightest.getWeight()) {
+                    currentLightest = animal;
+                }
             }
         }
         return currentLightest;
     }
 
-
-
-
-    //AQUILE//
-    public Eagle  getHighestEagle(){
-        Eagle currentHighest = eagleList.get(0);
-        for(int i=1; i<eagleList.size(); i++){
-            if (eagleList.get(i).getEight() > currentHighest.getEight()){
-                currentHighest=eagleList.get(i);
-            }
-        }
-        return  currentHighest;
-    }
-
-    public Eagle getSmallestEagle(){
-        Eagle currentSmallest= eagleList.get(0);
-        for(int i=1; i<eagleList.size(); i++){
-            if(eagleList.get(i).getEight() < currentSmallest.getEight()){
-                currentSmallest=eagleList.get(i);
-            }
-        }
-        return currentSmallest;
-    }
-    public Eagle getHeaviestEagle(){
-        Eagle currentHeaviest= eagleList.get(0);
-        for (int i =1; i<eagleList.size();i++){
-            if(eagleList.get(i).getWeight() > currentHeaviest.getWeight()){
-                currentHeaviest=eagleList.get(i);
-            }
-        }
-        return currentHeaviest;
-    }
-    public Eagle getLightestEagle(){
-        Eagle currentLightest= eagleList.get(0);
-        for (int i =1;i< eagleList.size();i++){
-            if (eagleList.get(i).getWeight()< currentLightest.getWeight()){
-                currentLightest=eagleList.get(i);
-            }
-        }
-        return currentLightest;
-    }
-    //ALTRO//
-    public AnimalsWithTails getlongestTail(){
-        List<AnimalsWithTails> animalsWithTailsList = new ArrayList<>();
-        animalsWithTailsList.addAll(lionList);
-        animalsWithTailsList.addAll(tigerList);
-        AnimalsWithTails currentLongestTail =  animalsWithTailsList.get(0);
-        for (int i=1; i<animalsWithTailsList.size();i++){
-            if(animalsWithTailsList.get(i).getTailLenght() > currentLongestTail.getTailLenght()){
-                currentLongestTail=animalsWithTailsList.get(i);
+    public AnimalWithTails getlongestTail() {
+        AnimalWithTails currentLongestTail = null;
+        for (Animal animal : animalList) {
+            if (animal instanceof AnimalWithTails) {
+                AnimalWithTails animalWithTails = (AnimalWithTails) animal;
+                if (currentLongestTail == null) {
+                    currentLongestTail = animalWithTails;
+                } else if (animalWithTails.getTailLength() > currentLongestTail.getTailLength()) {
+                    currentLongestTail = animalWithTails;
+                }
             }
         }
         return currentLongestTail;
     }
-    public AnimalsWithWings getWingSpan(){
-        List<AnimalsWithWings> animalsWithWingsList = new ArrayList<>(eagleList);
-        AnimalsWithWings currentWingspan = animalsWithWingsList.get(0);
-        for (int i = 1; i<animalsWithWingsList.size();i++){
-            if (animalsWithWingsList.get(i).getWingspan() > currentWingspan.getWingspan()){
-                currentWingspan= animalsWithWingsList.get(i);
+
+    public AnimalsWithWings getWidestWingSpan() {
+        AnimalsWithWings currentWidestWingspan = null;
+        for (Animal animal : animalList) {
+            //se è una instanza  lo implemento direttamente nella nuova variabile
+            if (animal instanceof AnimalsWithWings animalsWithWings) {
+                if (currentWidestWingspan == null) {
+                    currentWidestWingspan = animalsWithWings;
+                } else if (animalsWithWings.getWingspan() > currentWidestWingspan.getWingspan()) {
+                    currentWidestWingspan = animalsWithWings;
+                }
             }
         }
-        return   currentWingspan;
+        return currentWidestWingspan;
     }
 
 }

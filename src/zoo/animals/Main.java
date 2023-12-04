@@ -1,4 +1,4 @@
-package zoo.allAnimals;
+package zoo.animals;
 
 import zoo.controller.Zoo;
 
@@ -46,8 +46,9 @@ public class Main {
         System.out.println("la tigre  più grande è.." + zoo.getHeaviestAnimal(Tiger.class).getName());
         System.out.println("l'aquila più grande è.." + zoo.getHeaviestAnimal(Eagle.class).getName());
 
-        System.out.println("L'alato più grande è.." + zoo.getWidestWingSpan().getName());
-        System.out.println("l'animale con la coda più lunga è.." + zoo.getlongestTail().getName());
+        System.out.println("l'animale con la coda più lunga è.." + zoo.getLongestTail().getName());
+        System.out.println("L'alato più grande è.." + zoo.getWidestWingspan().getName());
+
 
     }
 }

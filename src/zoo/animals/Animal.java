@@ -1,6 +1,7 @@
-package zoo.allAnimals;
+package zoo.animals;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 
 public class Animal {
     private String name;
@@ -66,4 +67,6 @@ public class Animal {
     public void setHeight(double height) {
         this.height = height;
     }
+
+
 }

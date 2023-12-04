@@ -1,106 +1,71 @@
 package zoo.controller;
 
-import zoo.allAnimals.*;
+import zoo.animals.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class Zoo {
-    List<Animal> animalList;
+    private final Map<Class<? extends Animal>, List<Animal>> animalMap;
 
     public Zoo() {
-        animalList = new ArrayList<>();
+        this.animalMap = new HashMap<>();
     }
 
     public void addAnimal(Animal animal) {
-        animalList.add(animal);
-    }
-
-    public <T extends Animal> Animal getTallestAnimal(Class<T> classe) {
-        Animal currentTallest = null;
-        for (Animal animal : animalList) {
-            if (classe.isInstance(animal)) {
-                if (currentTallest == null) {
-                    currentTallest = animal;
-                } else if (animal.getHeight() > currentTallest.getHeight()) {
-                    currentTallest = animal;
-                }
-            }
+        if (!animalMap.containsKey(animal.getClass())) {
+            animalMap.put(animal.getClass(), new ArrayList<>());
         }
-        return currentTallest;
+        animalMap.get(animal.getClass()).add(animal);
     }
 
-    public <T extends Animal> Animal getSmallestAnimal(Class<T> classe) {
-        Animal currentSmallest = null;
-        for (Animal animal : animalList) {
-            if (classe.isInstance(animal)) {
-                if (currentSmallest == null) {
-                    currentSmallest = animal;
-                } else if (animal.getHeight() < currentSmallest.getHeight()) {
-                    currentSmallest = animal;
-                }
-            }
-        }
-        return currentSmallest;
+    public <T extends Animal> Animal getTallestAnimal(Class<T> species) {
+        return animalMap.get(species)
+                .stream()
+                .max(Comparator.comparing(Animal::getHeight))
+                .orElse(null);
+
     }
 
-    public <T extends Animal> Animal getHeaviestAnimal(Class<T> classe) {
-        Animal currentHeaviest = null;
-        for (Animal animal : animalList) {
-            if (classe.isInstance(animal)) {
-                if (currentHeaviest == null) {
-                    currentHeaviest = animal;
-                } else if (animal.getHeight() > currentHeaviest.getWeight()) {
-                    currentHeaviest = animal;
-                }
-            }
-        }
-        return currentHeaviest;
+    public <T extends Animal> Animal getSmallestAnimal(Class<T> species) {
+        return animalMap.get(species)
+                .stream()
+                .min(Comparator.comparing(Animal::getHeight))
+                .orElse(null);
     }
 
-    public <T extends Animal> Animal getLightestAnimal(Class<T> classe) {
-        Animal currentLightest = null;
-        for (Animal animal : animalList) {
-            if (classe.isInstance(animal)) {
-                if (currentLightest == null) {
-                    currentLightest = animal;
-                } else if (animal.getHeight() < currentLightest.getWeight()) {
-                    currentLightest = animal;
-                }
-            }
-        }
-        return currentLightest;
+
+    public <T extends Animal> Animal getHeaviestAnimal(Class<T> species) {
+        return animalMap.get(species)
+                .stream()
+                .max(Comparator.comparing(Animal::getWeight))
+                .orElse(null);
     }
 
-    public AnimalWithTails getlongestTail() {
-        AnimalWithTails currentLongestTail = null;
-        for (Animal animal : animalList) {
-            if (animal instanceof AnimalWithTails) {
-                AnimalWithTails animalWithTails = (AnimalWithTails) animal;
-                if (currentLongestTail == null) {
-                    currentLongestTail = animalWithTails;
-                } else if (animalWithTails.getTailLength() > currentLongestTail.getTailLength()) {
-                    currentLongestTail = animalWithTails;
-                }
-            }
-        }
-        return currentLongestTail;
+    public <T extends Animal> Animal getLightestAnimal(Class<T> species) {
+        return animalMap.get(species)
+                .stream()
+                .min(Comparator.comparing(Animal::getWeight))
+                .orElse(null);
     }
 
-    public AnimalsWithWings getWidestWingSpan() {
-        AnimalsWithWings currentWidestWingspan = null;
-        for (Animal animal : animalList) {
-            //se è una instanza  lo implemento direttamente nella nuova variabile
-            if (animal instanceof AnimalsWithWings animalsWithWings) {
-                if (currentWidestWingspan == null) {
-                    currentWidestWingspan = animalsWithWings;
-                } else if (animalsWithWings.getWingspan() > currentWidestWingspan.getWingspan()) {
-                    currentWidestWingspan = animalsWithWings;
-                }
-            }
-        }
-        return currentWidestWingspan;
+    public AnimalWithTail getLongestTail() {
+        return animalMap.values()
+                .stream()
+                .flatMap(Collection::stream)
+                .filter(AnimalWithTail.class::isInstance)
+                .map(AnimalWithTail.class::cast)
+                .max(Comparator.comparing(AnimalWithTail::getTailLength))
+                .orElse(null);
     }
 
+    public AnimalWithWings getWidestWingspan() {
+        return animalMap.values()
+                .stream()
+                .flatMap(Collection::stream)
+                .filter(AnimalWithWings.class::isInstance)
+                .map(AnimalWithWings.class::cast)
+                .max(Comparator.comparing(AnimalWithWings::getWingspan))
+                .orElse(null);
+    }
 }

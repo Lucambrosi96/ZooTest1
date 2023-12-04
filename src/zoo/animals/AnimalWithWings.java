@@ -1,11 +1,11 @@
-package zoo.allAnimals;
+package zoo.animals;
 
 import java.time.LocalDate;
 
-public class AnimalsWithWings extends Animal {
+public class AnimalWithWings extends Animal {
     private double wingspan;
 
-    public AnimalsWithWings(String name, String favoriteFood, int age, LocalDate entryDate, double weight, double height, double wingspan) {
+    public AnimalWithWings(String name, String favoriteFood, int age, LocalDate entryDate, double weight, double height, double wingspan) {
         super(name, favoriteFood, age, entryDate, weight, height);
         this.wingspan = wingspan;
     }

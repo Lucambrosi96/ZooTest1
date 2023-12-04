@@ -1,8 +1,8 @@
-package zoo.allAnimals;
+package zoo.animals;
 
 import java.time.LocalDate;
 
-public class Eagle extends AnimalsWithWings {
+public class Eagle extends AnimalWithWings {
 
 
     public Eagle(String name, String favoriteFood, int age, LocalDate entryDate, double weight, double height, double wingspan) {
